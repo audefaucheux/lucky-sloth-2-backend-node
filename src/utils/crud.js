@@ -1,6 +1,6 @@
 const getOne = (model) => async (req, res) => {
   try {
-    const doc = await model.findById(req.params.id).exec();
+    const doc = await model.findOne({ _id: req.params.id }).exec();
     return res.status(200).json({ data: doc });
   } catch (error) {
     return res.status(400).json({ message: error });
@@ -27,7 +27,7 @@ const createOne = (model) => async (req, res) => {
 
 const updateOne = (model) => async (req, res) => {
   try {
-    const doc = await model.findByIdAndUpdate(req.params.id, req.body, {
+    const doc = await model.findOneAndUpdate({ _id: req.params.id }, req.body, {
       new: true,
     });
     return res.status(200).json({ data: doc });
@@ -38,7 +38,7 @@ const updateOne = (model) => async (req, res) => {
 
 const removeOne = (model) => async (req, res) => {
   try {
-    const doc = await model.findByIdAndRemove(req.params.id).exec();
+    const doc = await model.findOneAndDelete({ _id: req.params.id });
     return res.status(200).json({ data: doc });
   } catch (error) {
     return res.status(400).json({ message: error });
