@@ -1,10 +1,11 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
-const dbUrl = "mongodb://localhost:27017/";
 
-exports.connect = (url = dbUrl, opts = {}) => {
-  return mongoose.connect(url, {
-    ...opts,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  });
+const url = process.env.DB_HOST;
+const options = {
+  useCreateIndex: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 };
+
+exports.connect = () => mongoose.connect(url, options);

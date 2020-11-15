@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const { connect } = require("./utils/db.js");
 const userRouter = require("./resources/user/user.router");
+require("dotenv").config();
 
 const app = express();
 
@@ -16,11 +17,13 @@ app.use(morgan("dev"));
 
 app.use("/api/users", userRouter);
 
+const port = process.env.PORT;
+
 module.exports = start = async () => {
   try {
     await connect();
-    app.listen(3004, () => {
-      console.log("Server is running on 3004");
+    app.listen(port, () => {
+      console.log(`Server is running on ${port}`);
     });
   } catch (error) {
     console.log(error);
