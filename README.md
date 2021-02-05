@@ -1,9 +1,8 @@
 # lucky-sloth-2-backend-node
 
-make sure mongodb is installed and running
-`brew services start mongodb-community@4.4`
+Setup Development
 
-`http://localhost:3004/api/users`
-
-deployed on Heroku
-https://lucky-sloth-node.herokuapp.com/
+- add .env file and add the below env variables:
+  DB_HOST=mongodb://mongo:27017/mongo-test
+  PORT=8080
+- run `docker-compose up`
